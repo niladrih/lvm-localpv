@@ -17,11 +17,17 @@ limitations under the License.
 package usage
 
 import (
+	"fmt"
 	"strconv"
 
 	ga4Client "github.com/openebs/go-ogle-analytics/client"
 	ga4Event "github.com/openebs/go-ogle-analytics/event"
 	k8sapi "github.com/openebs/lib-csi/pkg/client/k8s"
+)
+
+var (
+	ApiSecret     string
+	MeasurementId string
 )
 
 // Usage struct represents all information about a usage metric sent to
@@ -36,6 +42,11 @@ type Usage struct {
 
 // New returns an instance of Usage
 func New() *Usage {
+	fmt.Println("==========================================")
+	fmt.Println("ApiSecret: " + ApiSecret)
+	fmt.Println("MeasurementId: " + MeasurementId)
+	fmt.Println("==========================================")
+
 	client, err := ga4Client.NewMeasurementClient(
 		ga4Client.WithApiSecret("XXXXX"),
 		ga4Client.WithMeasurementId("G-XXXXXX"),
